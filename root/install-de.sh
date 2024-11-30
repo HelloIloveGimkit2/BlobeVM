@@ -17,7 +17,6 @@ if jq ".DE" "/options.json" | grep -q "KDE Plasma (Heavy)"; then
     plasma-workspace \
     qml-module-qt-labs-platform \
     systemsettings
-    sed -i 's/applications:org.kde.discover.desktop,/applications:org.kde.konsole.desktop,/g' /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml
     cp /startwm-kde.sh /defaults/startwm.sh
 fi
 if jq ".DE" "/options.json" | grep -q "XFCE4 (Lightweight)"; then
@@ -61,6 +60,7 @@ if jq ".DE" "/options.json" | grep -q "GNOME 42 (Very Heavy)"; then
     mesa-utils \
     xterm \
     yaru-*
+    ubuntu-desktop*
     
     # load dconf settings
     if [ -f /jammy.dconf.conf ]; then
@@ -80,9 +80,6 @@ if jq ".DE" "/options.json" | grep -q "GNOME 42 (Very Heavy)"; then
 
     echo "sudo chmod u+s /usr/lib/dbus-1.0/dbus-daemon-launch-helper" >> ~/.bashrc
     echo "sudo chmod u+s /usr/lib/dbus-1.0/dbus-daemon-launch-helper" >> /config/.bashrc
-
-    mv -v /usr/share/applications/gnome-sound-panel.desktop /usr/share/applications/gnome-sound-panel.desktop.back
-
     echo "export XDG_CURRENT_DESKTOP=GNOME" >> ~/.bashrc
     echo "export XDG_CURRENT_DESKTOP=GNOME" >> /config/.bashrc
 
